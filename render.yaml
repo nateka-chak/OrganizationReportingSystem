@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: weekly-reports-server
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 9998
+      - key: MONGODB_URI
+        sync: false
+
