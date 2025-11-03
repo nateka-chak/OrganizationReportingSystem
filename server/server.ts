@@ -9,19 +9,19 @@ import Task from './models/Task';
 dotenv.config();
 
 const app: Application = express();
-const PORT: number = parseInt(process.env.PORT || '5000', 10);
+const PORT: number = parseInt(process.env.PORT || '9998', 10);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-let MONGODB_URI: string = process.env.MONGODB_URI || 'mongodb://localhost:27017/weekly-reports';
+let MONGODB_URI: string = process.env.MONGODB_URI || 'mongodb+srv://marlin4off7:Mal12345@cluster0.f3em4wv.mongodb.net/?appName=Cluster0';
 
 // Validate MongoDB URI format
 if (MONGODB_URI && !MONGODB_URI.startsWith('mongodb://') && !MONGODB_URI.startsWith('mongodb+srv://')) {
   console.warn('Invalid MONGODB_URI format, using default localhost connection');
-  MONGODB_URI = 'mongodb://localhost:27017/weekly-reports';
+  MONGODB_URI = 'mongodb+srv://marlin4off7:Mal12345@cluster0.f3em4wv.mongodb.net/?appName=Cluster0';
 }
 
 // MongoDB connection with better error handling
@@ -33,10 +33,10 @@ const connectToDatabase = async (): Promise<void> => {
     console.error('MongoDB connection error:', error.message);
     
     // Try default connection if the first one fails and it's not already the default
-    if (MONGODB_URI !== 'mongodb://localhost:27017/weekly-reports') {
+    if (MONGODB_URI !== 'mongodb+srv://marlin4off7:Mal12345@cluster0.f3em4wv.mongodb.net/?appName=Cluster0') {
       console.log('Attempting to connect to default localhost MongoDB...');
       try {
-        await mongoose.connect('mongodb://localhost:27017/weekly-reports');
+        await mongoose.connect('mongodb+srv://marlin4off7:Mal12345@cluster0.f3em4wv.mongodb.net/?appName=Cluster0');
         console.log('Connected to default MongoDB');
       } catch (defaultError: any) {
         console.error('Failed to connect to MongoDB:', defaultError.message);
